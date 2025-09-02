@@ -5,39 +5,15 @@
         string[,] tabuleiro = new string[3, 3];
         int linha = 3, colunas = 3;
         int posicaoLinha, posicaoColuna, qntdJogadas = 1;
-        string jogadordavez;
-        string jogador1, jogador2, nomeDaVez;
+        string jogadordavez=" ";
+        string jogador1 = "", jogador2="", nomeDaVez;
 
-        tabuleiro[0, 0] = " ";
-        tabuleiro[0, 1] = " ";
-        tabuleiro[0, 2] = " ";
-        tabuleiro[1, 0] = " ";
-        tabuleiro[1, 1] = " ";
-        tabuleiro[1, 2] = " ";
-        tabuleiro[2, 0] = " ";
-        tabuleiro[2, 1] = " ";
-        tabuleiro[2, 2] = " ";
+        LimparTabuleiro(tabuleiro);
 
 
-        Console.WriteLine("   |   | ");
-        Console.WriteLine("---+---+---");
-        Console.WriteLine("   |   | ");
-        Console.WriteLine("---+---+---");
-        Console.WriteLine("   |   | ");
+        MostrarTabuleiroVazio();
 
-        Console.WriteLine("Escolha o nome do X: ");
-        jogador1 = Console.ReadLine();
-        Console.WriteLine("Escolha o nome do O: ");
-        jogador2 = Console.ReadLine();
-
-        Console.WriteLine("Quem inicia x ou o:");
-        jogadordavez = Console.ReadLine();
-
-        while (jogadordavez != "x" && jogadordavez != "o")
-        {
-            Console.WriteLine("Errado. Tente novamente");
-            jogadordavez = Console.ReadLine();
-        }
+        DefinirSimboloIniciante(jogadordavez, jogador1, jogador2);
 
         if (jogadordavez == "x")
         {
@@ -145,4 +121,47 @@
 
 
     }
+    private static void MostrarTabuleiroVazio()
+    {
+        Console.WriteLine("   |   | ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine("   |   | ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine("   |   | ");
+
+    }
+
+    private static void LimparTabuleiro(string[,] tabuleiro)
+    {
+        tabuleiro[0, 0] = " ";
+        tabuleiro[0, 1] = " ";
+        tabuleiro[0, 2] = " ";
+        tabuleiro[1, 0] = " ";
+        tabuleiro[1, 1] = " ";
+        tabuleiro[1, 2] = " ";
+        tabuleiro[2, 0] = " ";
+        tabuleiro[2, 1] = " ";
+        tabuleiro[2, 2] = " ";
+
+    }
+
+    private static void DefinirSimboloIniciante(string jogadordavez,string jogador1, string jogador2)
+    {
+        Console.WriteLine("Escolha o nome do X: ");
+        jogador1 = Console.ReadLine();
+        Console.WriteLine("Escolha o nome do O: ");
+        jogador2 = Console.ReadLine();
+
+        Console.WriteLine("Quem inicia x ou o:");
+        jogadordavez = Console.ReadLine();
+
+        while (jogadordavez != "x" && jogadordavez != "o")
+        {
+            Console.WriteLine("Errado. Tente novamente");
+            jogadordavez = Console.ReadLine();
+        }
+    }
+
+
 }
+
