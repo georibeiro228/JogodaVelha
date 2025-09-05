@@ -25,15 +25,36 @@
 
             LimparTabuleiro(tabuleiro);
 
+            bool vezDaMaquina = false;
             do
             {
               
                 MostrarTabuleiroPreenchido(tabuleiro);
+                if (vezDaMaquina == true)
+                { 
+                    bool maquinaPreencheu=false;
+                    do
+                    { 
+                        Random random = new Random();
+                        posicaoLinha = random.Next(1,3);
+                    }
 
-                EscolhaPosicao(ref nomeDaVez,ref posicaoColuna,ref posicaoLinha, ref jogadordavez, ref jogador1, ref jogador2, ref tabuleiro, ref qntdJogadas);
 
 
 
+                }
+            
+
+
+
+                else
+                {
+                    EscolhaPosicao(ref nomeDaVez, ref posicaoColuna, ref posicaoLinha, ref jogadordavez, ref jogador1, ref jogador2, ref tabuleiro, ref qntdJogadas);
+                    vezDaMaquina = true;
+
+
+
+                }
 
                 qntdJogadas++;
             } while (qntdJogadas <= 9);
