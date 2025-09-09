@@ -10,14 +10,14 @@ public class Program
         string jogadordavez=" ";
         string jogador1 = "", jogador2 = "", nomeDaVez = "";
         int jogadores = 1 ;
-        int placar1=0, placar2=0;
         bool vezDaMaquina = false;
         bool houveGanhador = false;
 
-        Console.WriteLine("Seja bem vindo ao Jogo da Velha!! ");
+        Console.WriteLine("Seja bem vindo ao Jogo da Velha! ");
 
         Console.WriteLine("Com quantos jogadores deseja jogar? (1 ou 2) ");
         jogadores=int.Parse(Console.ReadLine());
+
 
         if (jogadores == 1)
         {
@@ -28,12 +28,13 @@ public class Program
           jogadordavez=(Console.ReadLine()).ToString();
 
             LimparTabuleiro(tabuleiro);
-
+            Console.Clear();
           
             do
             {
-              
-                MostrarTabuleiroPreenchido(tabuleiro);
+                Console.Clear();
+                MostrarTabuleiroPreenchido(ref tabuleiro);
+                
                 if (vezDaMaquina == true)
                 { 
                     bool maquinaPreencheu= false;
@@ -79,7 +80,7 @@ public class Program
                 if (houveGanhador == true) 
                 {   
                 
-                    MostrarTabuleiroPreenchido(tabuleiro);
+                    MostrarTabuleiroPreenchido(ref tabuleiro);
                     break;   
                 }
 
@@ -91,11 +92,13 @@ public class Program
          }
         else
         {
-            DefinirSimboloIniciante(jogadordavez, jogador1, jogador2);
+            DefinirSimboloIniciante(ref jogadordavez, ref jogador1,ref jogador2);
 
             LimparTabuleiro(tabuleiro);
+            Console.Clear();
+            MostrarTabuleiroPreenchido(ref tabuleiro);
+            
 
-            MostrarTabuleiroVazio();
 
             if (jogadordavez == "X")
             {
@@ -110,14 +113,20 @@ public class Program
             do
             {
                 EscolhaPosicao(ref nomeDaVez, ref posicaoColuna, ref posicaoLinha, ref jogadordavez, ref jogador1,ref jogador2, ref tabuleiro,ref qntdJogadas,ref vezDaMaquina);
+                MostrarTabuleiroPreenchido(ref tabuleiro);
+
+                Ganhador(ref tabuleiro, ref qntdJogadas, ref houveGanhador);
+                if (houveGanhador == true)
+                {
+
+                    MostrarTabuleiroPreenchido(ref tabuleiro);
+                    break;
+                }
 
 
-
-  
             } while (qntdJogadas <= 9);
 
-            Console.WriteLine("Jogo para 1 jogador selecionado: ");
-            Console.WriteLine("Voce jogará com a máquina ");
+       
         }
     }
 
@@ -146,24 +155,24 @@ public class Program
 
     }
 
-    private static void DefinirSimboloIniciante(string jogadordavez,string jogador1, string jogador2)
+    private static void DefinirSimboloIniciante(ref string jogadordavez, ref string jogador1, ref string jogador2)
     {
         Console.WriteLine("Escolha o nome do X: ");
         jogador1 = Console.ReadLine();
         Console.WriteLine("Escolha o nome do O: ");
         jogador2 = Console.ReadLine();
 
-        Console.WriteLine("Quem inicia x ou o:");
+        Console.WriteLine("Quem inicia X ou O:");
         jogadordavez = Console.ReadLine();
 
-        while (jogadordavez != "x" && jogadordavez != "o")
+        while (jogadordavez != "X" && jogadordavez != "O")
         {
             Console.WriteLine("Errado. Tente novamente");
             jogadordavez = Console.ReadLine();
         }
     }
 
-    private static void MostrarTabuleiroPreenchido(string[,]tabuleiro)
+    private static void MostrarTabuleiroPreenchido(ref string[,]tabuleiro)
     {
         Console.WriteLine(" {0} | {1} | {2} ", tabuleiro[0, 0], tabuleiro[0, 1], tabuleiro[0, 2]);
         Console.WriteLine("---+---+---");
